@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="home_tab_host_tabs">
+        <item>消息</item>
+        <item>工作</item>
+        <item>我的</item>
+    </string-array>
+</resources>

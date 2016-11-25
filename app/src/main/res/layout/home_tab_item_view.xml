@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@color/grey_level6"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/tab_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small_height"
+        android:background="@color/line_background" />
+
+    <FrameLayout
+        android:id="@+id/tab_item_fl"
+        android:layout_below="@+id/tab_item_line"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_marginTop="6dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center_horizontal"
+            android:focusable="false"
+            android:src="@mipmap/tabhost_task_unselected" >
+        </ImageView>
+
+        <TextView
+            android:background="@drawable/fm_circle_red_background"
+            android:id="@+id/num_tv"
+            android:singleLine="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="23dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone"
+            android:textColor="@color/main_white"
+            android:layout_width="19dp"
+            android:layout_height="19dp" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_below="@+id/tab_item_fl"
+        android:id="@+id/textview"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey_level2"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin_lsmall"
+        android:textSize="@dimen/text_size_xsmall" />
+</RelativeLayout>
