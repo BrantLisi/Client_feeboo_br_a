@@ -1,10 +1,10 @@
 /*
 * -----------------------------------------------------------------------------------
-* Copyright (C) 2004-2015, by FacilityONE Head Office Co. Ltd. All rights reserved.
+* Copyright (C) 2004-2015, by brant_feeboo Head Office Co. Ltd. All rights reserved.
 * -----------------------------------------------------------------------------------
 *
 * File: WelcomeActivity.java
-* Author: tessi.lu
+* Author: brant.fei
 * Version: 1.0
 * Create: 2015-04-20
 *
@@ -35,7 +35,7 @@ import com.umeng.analytics.MobclickAgent;
 
 /**
  * 欢迎页面
- * @author tessi.lu
+ * @author brant.fei
  * @version V1.0，2015-04-20
  * @see
  * @since Shang

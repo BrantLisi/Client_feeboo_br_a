@@ -43,3 +43,9 @@ captures/
 # other
 .DS_Store
 .externalNativeBuild
+.idea/
+/app/build/
+/app/app.iml
+/br_library/build/
+/br_library/br_library.iml
+
