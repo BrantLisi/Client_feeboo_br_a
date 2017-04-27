@@ -29,6 +29,7 @@ import android.view.Display;
 import com.brantf.wireless.a.business.home.MainActivity;
 import com.brantf.wireless.a.R;
 import com.brantf.wireless.a.business.guide.GuideActivity;
+import com.brantf.wireless.a.business.login.LoginActivity;
 import com.brantf.wireless.a.common.base.BrfApp;
 import com.umeng.analytics.MobclickAgent;
 
@@ -44,7 +45,6 @@ public class WelcomeActivity extends Activity {
  
   /** 欢迎界面等待的时间. */
   public static final int DELAY_TIME = 2000;
-  public Context mContext;
 
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
@@ -145,7 +145,7 @@ public class WelcomeActivity extends Activity {
 
     /** 切换到登录页 */
     private void switchToLogin() {
-//        LoginActivity.startActivity(WelcomeActivity.this);
+        LoginActivity.startActivity(WelcomeActivity.this);
         WelcomeActivity.this.finish();
     }
 }

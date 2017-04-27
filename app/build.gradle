@@ -10,14 +10,6 @@ repositories {
     }
 }
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':br_library')
-    //butterknife
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-}
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -60,10 +52,6 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../android_shang_key_2017_04_27.jks")
-            storePassword "brantf2017"
-            keyAlias "brantf"
-            keyPassword "brantf2017"
         }
 
         release {
@@ -135,3 +123,13 @@ android {
         flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':br_library')
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.android.support:design:25.3.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+}
+

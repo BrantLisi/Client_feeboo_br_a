@@ -1,25 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-    //multidex
-    compile 'com.android.support:multidex:1.0.1'
-    //RecyclerView v7
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    //umeng
-    compile 'com.umeng.analytics:analytics:latest.integration'
-    //角标 https://github.com/leolin310148/ShortcutBadger
-    compile "me.leolin:ShortcutBadger:1.1.16@aar"
-}
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -45,4 +26,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    //multidex
+    compile 'com.android.support:multidex:1.0.1'
+    //RecyclerView v7
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    //umeng
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    //角标 https://github.com/leolin310148/ShortcutBadger
+    compile "me.leolin:ShortcutBadger:1.1.16@aar"
 }

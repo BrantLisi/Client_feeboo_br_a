@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 
 import com.brantf.wireless.a.R;
+import com.brantf.wireless.a.business.login.LoginActivity;
 import com.chechezhi.ui.guide.AbsGuideActivity;
 import com.chechezhi.ui.guide.SinglePage;
 
@@ -80,6 +81,7 @@ public class GuideActivity extends AbsGuideActivity {
      * 切换到登录页面
      */
     public void switchToLogin() {
+        LoginActivity.startActivity(this);
         GuideActivity.this.finish();
     }
 
