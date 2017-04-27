@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseFragmentActivity  implements View.OnClickListener {
     @BindView(R.id.menu_message)
@@ -40,7 +39,6 @@ public class MainActivity extends BaseFragmentActivity  implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         initView();
     }
 
@@ -56,7 +54,7 @@ public class MainActivity extends BaseFragmentActivity  implements View.OnClickL
         mMenuMine.setOnClickListener(this);
 
         // 设置Tab页面集合
-        mFragmentList = new ArrayList<Fragment>();
+        mFragmentList = new ArrayList<>();
 
         messageFragment = new MessageFragment();
         workFragment = new WorkFragment();

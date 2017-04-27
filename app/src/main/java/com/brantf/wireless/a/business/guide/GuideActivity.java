@@ -18,7 +18,6 @@ package com.brantf.wireless.a.business.guide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 
 import com.brantf.wireless.a.R;
