@@ -1,21 +1,12 @@
 apply plugin: 'com.android.application'
 
-android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
-    defaultConfig {
-        applicationId "com.brantf.wireless.a"
-        minSdkVersion 14
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+def static releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -25,4 +16,122 @@ dependencies {
     //butterknife
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    dexOptions {
+        preDexLibraries = false
+        incremental true
+        javaMaxHeapSize '4g'
+    }
+
+    defaultConfig {
+        applicationId "com.brantf.wireless.a"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+        // 默认是umeng的渠道
+        manifestPlaceholders = [XG_V2_ACCESS_ID    : XG_V2_ACCESS_ID,
+                                XG_V2_ACCESS_KEY   : XG_V2_ACCESS_KEY,
+                                UMENG_CHANNEL_KEY  : UMENG_CHANNEL_KEY,
+                                UMENG_CHANNEL_VALUE: UMENG_CHANNEL_VALUE,
+                                MAP_API_KEY        : MAP_API_KEY,
+                                SERVICE_VALUE      : SERVICE_VALUE]
+        buildConfigField "String", "SERVER_URL", "\"http://192.168.6.62:8080\""
+        buildConfigField "String", "UPDATE_CHANNEL", "\"\""
+        buildConfigField "String", "MOB_APP_KEY", MOB_APP_KEY
+        buildConfigField "String", "MOB_APP_SECRET", MOB_APP_SECRET
+        buildConfigField "String", "DB_NAME", "\"fm_shang_db.db\""
+        buildConfigField "String", "APP_KEY", "\"00000000\""
+        buildConfigField "String", "APP_SECRET", "\"11111111\""
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../android_shang_key_2017_04_27.jks")
+            storePassword "brantf2017"
+            keyAlias "brantf"
+            keyPassword "brantf2017"
+        }
+
+        release {
+            storeFile file("../android_shang_key_2017_04_27.jks")
+            storePassword "brantf2017"
+            keyAlias "brantf"
+            keyPassword "brantf2017"
+        }
+    }
+
+    buildTypes {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            // 等于true，正式版本时会混淆，混淆后不能用
+            minifyEnabled false
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为F-ONE_v1.0_2015-01-15_wandoujia.apk
+                        def fileName = "${SERVICE_VALUE}" +
+                                "_v${variant.productFlavors[0].properties.get("versionName")}" +
+                                "_${variant.productFlavors[0].properties.get("versionCode")}" +
+                                "_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    productFlavors {
+        ATEST {
+            versionCode 1
+            versionName "1.0.0"
+        }
+        HUAWEI {
+            versionCode 1
+            versionName "1.0.0"
+            buildConfigField "String", "SERVER_URL", "\"http://203.156.255.212\""
+            buildConfigField "String", "UPDATE_CHANNEL", "\"mCsFmAAT5dxnWJH4\""
+        }
+        QQ {
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
 }
