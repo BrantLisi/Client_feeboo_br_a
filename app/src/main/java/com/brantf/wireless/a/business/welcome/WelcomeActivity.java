@@ -30,7 +30,7 @@ import com.brantf.wireless.a.business.home.MainActivity;
 import com.brantf.wireless.a.R;
 import com.brantf.wireless.a.business.guide.GuideActivity;
 import com.brantf.wireless.a.business.login.LoginActivity;
-import com.brantf.wireless.a.common.base.BrfApp;
+import com.brantf.wireless.a.common.base.BRFApp;
 import com.umeng.analytics.MobclickAgent;
 
 
@@ -58,7 +58,7 @@ public class WelcomeActivity extends Activity {
         MobclickAgent.enableEncrypt(true);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
         work();
-        if (BrfApp.isDebug()) {
+        if (BRFApp.isDebug()) {
             Log.d("....", getResolution());
             Log.d("....", getDeviceInfo(this));
         }
@@ -108,19 +108,19 @@ public class WelcomeActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (BrfApp.isTest()) {
+                if (BRFApp.isTest()) {
                     switchToGuide();
                     return;
                 }
 
                 /** 如果未打开过引导页 */
-                if (!BrfApp.isUseGuide()) {
+                if (!BRFApp.isUseGuide()) {
                     switchToGuide();
                     return;
                 }
 
                 /** 如果不自动登录 */
-                if (!BrfApp.isAutoLogin()) {
+                if (!BRFApp.isAutoLogin()) {
                     switchToLogin();
                     return;
                 }

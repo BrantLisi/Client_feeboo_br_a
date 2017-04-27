@@ -36,6 +36,11 @@ import java.util.List;
 import com.brantf.wireless.a.R;
 import com.brantf.wireless.a.business.home.MainActivity;
 import com.brantf.wireless.a.common.base.BaseActivity;
+import com.brantf.wireless.br_library.oauth2.OAuthFM;
+import com.brantf.wireless.br_library.oauth2.OAuthListener;
+import com.brantf.wireless.br_library.oauth2.token.Token;
+import com.brantf.wireless.br_library.tools.ToastUtil;
+import com.orhanobut.logger.Logger;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -197,12 +202,14 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+//        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+//        return password.length() > 4;
+        return true;
     }
 
     /**
@@ -320,13 +327,18 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+            /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
+
+
+            OAuthFM.getInstance().clearToken();
+            Logger.d("登录中...");
+            OAuthFM.getInstance().startOAuth(mEmail, mPassword, mOAuthListener);
 
             // TODO: register the new account here.
             return true;
@@ -352,6 +364,47 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             showProgress(false);
         }
     }
+
+
+    /**
+     * OAuth2.0监听.
+     */
+    private OAuthListener mOAuthListener = new OAuthListener() {
+
+        @Override
+        public void onSuccess(final Token token) {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+//                    ToastUtil.showShortNormalToast();
+                }
+            });
+        }
+
+        @Override
+        public void onError(final String error) {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (TextUtils.isEmpty(error)) {
+//                        ShowNotice.showShortNotice(LoginActivity.this, R.string.login_login_error);
+                    } else {
+//                        ShowNotice.showShortNotice(LoginActivity.this, error);
+//                        ShowNotice.showShortNotice(LoginActivity.this, R.string.login_login_username_passwd_error);
+                    }
+
+//                    closeWaitting();
+                }
+            });
+        }
+
+        @Override
+        public void onCancel() {
+//            closeWaitting();
+        }
+    };
 
     /**
      * 启动引导页面

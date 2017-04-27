@@ -44,5 +44,12 @@ dependencies {
     //umeng
     compile 'com.umeng.analytics:analytics:latest.integration'
     //角标 https://github.com/leolin310148/ShortcutBadger
-    compile "me.leolin:ShortcutBadger:1.1.16@aar"
+    compile 'me.leolin:ShortcutBadger:1.1.16@aar'
+    //volley
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    //log
+    compile 'com.orhanobut:logger:1.15'
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    //toast
+    compile 'com.github.GrenderG:Toasty:1.1.5'
 }
