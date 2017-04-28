@@ -18,10 +18,10 @@ package com.brantf.wireless.br_library.oauth2.token;
 
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.brantf.wireless.br_library.oauth2.config.FMConfig;
 import com.brantf.wireless.br_library.oauth2.config.OAuthConfig;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +51,7 @@ public class Token {
      * @return 解析好的Token
      */
 	public static Token make(String response, OAuthConfig config) {
-		Logger.d("token make response: " + response);
+		Log.d("brant", "token make response: " + response);
 
 		if (config instanceof FMConfig) {
 			try {

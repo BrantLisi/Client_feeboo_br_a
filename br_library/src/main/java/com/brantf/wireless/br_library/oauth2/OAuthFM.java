@@ -17,11 +17,11 @@
 package com.brantf.wireless.br_library.oauth2;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.brantf.wireless.br_library.oauth2.config.FMConfig;
 import com.brantf.wireless.br_library.oauth2.config.OAuthConfig;
 import com.brantf.wireless.br_library.oauth2.token.Token;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,7 +151,7 @@ public class OAuthFM {
 							String result = mFMOauthHttpClient
 									.getAccessToken(mConfig
 											.getAccessTokenUrl(code), mHeaders);
-							Logger.d(result);
+							Log.d("brant",result);
 							Token token = Token.make(result, mConfig);
 
 							if (token == null) {

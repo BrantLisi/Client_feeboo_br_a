@@ -32,15 +32,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.brantf.wireless.a.R;
 import com.brantf.wireless.a.business.home.MainActivity;
+import com.brantf.wireless.a.common.base.BRFApp;
 import com.brantf.wireless.a.common.base.BaseActivity;
 import com.brantf.wireless.br_library.oauth2.OAuthFM;
 import com.brantf.wireless.br_library.oauth2.OAuthListener;
 import com.brantf.wireless.br_library.oauth2.token.Token;
 import com.brantf.wireless.br_library.tools.ToastUtil;
-import com.orhanobut.logger.Logger;
+
+import es.dmoral.toasty.Toasty;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -337,7 +340,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
 
             OAuthFM.getInstance().clearToken();
-            Logger.d("登录中...");
+            ToastUtil.showShortSuccessToast(BRFApp.getAppContext(), "登录中...");
             OAuthFM.getInstance().startOAuth(mEmail, mPassword, mOAuthListener);
 
             // TODO: register the new account here.
@@ -377,7 +380,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
                 @Override
                 public void run() {
-//                    ToastUtil.showShortNormalToast();
+                    ToastUtil.showShortNormalToast(BRFApp.getAppContext(),"登录成功");
                 }
             });
         }
@@ -389,12 +392,10 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 @Override
                 public void run() {
                     if (TextUtils.isEmpty(error)) {
-//                        ShowNotice.showShortNotice(LoginActivity.this, R.string.login_login_error);
+                        ToastUtil.showShortNormalToast(BRFApp.getAppContext(),"登录失败");
                     } else {
-//                        ShowNotice.showShortNotice(LoginActivity.this, error);
-//                        ShowNotice.showShortNotice(LoginActivity.this, R.string.login_login_username_passwd_error);
+                        ToastUtil.showShortNormalToast(BRFApp.getAppContext(),"用户名和密码错误");
                     }
-
 //                    closeWaitting();
                 }
             });

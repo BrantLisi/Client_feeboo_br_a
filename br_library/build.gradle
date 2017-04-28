@@ -47,9 +47,8 @@ dependencies {
     compile 'me.leolin:ShortcutBadger:1.1.16@aar'
     //volley
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    //log
-    compile 'com.orhanobut:logger:1.15'
-    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     //toast
     compile 'com.github.GrenderG:Toasty:1.1.5'
+    //待替换
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }

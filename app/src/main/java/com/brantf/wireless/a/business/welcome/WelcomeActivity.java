@@ -58,10 +58,6 @@ public class WelcomeActivity extends Activity {
         MobclickAgent.enableEncrypt(true);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
         work();
-        if (BRFApp.isDebug()) {
-            Log.d("....", getResolution());
-            Log.d("....", getDeviceInfo(this));
-        }
     }
 
     private String getDeviceInfo(Context context) {
