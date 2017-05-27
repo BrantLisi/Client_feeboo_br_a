@@ -338,7 +338,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 }
             }*/
 
-
             OAuthFM.getInstance().clearToken();
             ToastUtil.showShortSuccessToast(BRFApp.getAppContext(), "登录中...");
             OAuthFM.getInstance().startOAuth(mEmail, mPassword, mOAuthListener);
