@@ -320,6 +320,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ToastUtil.showShortSuccessToast(BRFApp.getAppContext(), "登录中...");
+        }
+
+        @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
@@ -339,12 +345,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }*/
 
             OAuthFM.getInstance().clearToken();
-            ToastUtil.showShortSuccessToast(BRFApp.getAppContext(), "登录中...");
             OAuthFM.getInstance().startOAuth(mEmail, mPassword, mOAuthListener);
 
             // TODO: register the new account here.
             return true;
         }
+
 
         @Override
         protected void onPostExecute(final Boolean success) {

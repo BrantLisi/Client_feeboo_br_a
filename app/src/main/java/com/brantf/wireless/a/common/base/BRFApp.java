@@ -45,7 +45,7 @@ public class BRFApp extends MultiDexApplication {
     }
 
     private void initData() {
-        mContext = getAppContext();
+        mContext = getApplicationContext();
 
         OAuthFM.getInstance().setParams(this, SystemConfig.APP_KEY, SystemConfig.APP_SECRET,
                 SystemConfig.SERVER_URL, getDeviceId());
